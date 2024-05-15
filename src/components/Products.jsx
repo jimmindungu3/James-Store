@@ -25,14 +25,14 @@ const Products = ({ products, APISetter, loading }) => {
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="flex mb-8 mt-4">
+    <div className="bg-gray-200">
+      <div className="container mx-auto flex pb-8 pt-6">
         <div className="w-1/6 p-4">
-          <div className="mb-4 text-xl font-bold">Categories</div>
-          <ul className="text-sm">
+          <div className="mb-4 text-2xl font-bold">Categories</div>
+          <ul className="">
             <li
               onClick={() => APISetter("/category/men's clothing")}
-              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
+              className="py-1 px-2 cursor-pointer font-bold text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Men's Clothes
             </li>
@@ -69,7 +69,7 @@ const Products = ({ products, APISetter, loading }) => {
               <Loader />
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
               {products.map((product) => (
                 <div
                   key={product.id}
