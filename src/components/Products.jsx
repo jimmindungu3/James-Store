@@ -1,40 +1,50 @@
 import React from "react";
 import Loader from "./Loader";
+import { PiShoppingCartSimpleBold } from "react-icons/pi";
+
+const truncateWords = (str, numWords) => {
+  const words = str.split(" ");
+  if (words.length > numWords) {
+    return words.slice(0, numWords).join(" ") + "...";
+  } else {
+    return str;
+  }
+};
 
 const Products = ({ products, APISetter, loading }) => {
   return (
     <div className="container mx-auto">
-      <div className="flex">
+      <div className="flex mb-8 mt-4">
         <div className="w-1/6 p-4">
-          <div className="mb-4 font-bold">Categories</div>
+          <div className="mb-4 text-xl font-bold">Categories</div>
           <ul className="text-sm">
             <li
               onClick={() => APISetter("/category/men's clothing")}
-              className="cursor-pointer font-bold text-nowrap"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Men's Clothes
             </li>
             <li
               onClick={() => APISetter("/category/women's clothing")}
-              className="cursor-pointer font-bold text-nowrap"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Women's Clothes
             </li>
             <li
               onClick={() => APISetter("/category/jewelery")}
-              className="cursor-pointer font-bold text-nowrap"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Jewellery
             </li>
             <li
               onClick={() => APISetter("/category/electronics")}
-              className="cursor-pointer font-bold text-nowrap"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Electronics
             </li>
             <li
               onClick={() => APISetter("")}
-              className="cursor-pointer font-bold text-nowrap"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               All Products
             </li>
@@ -47,20 +57,56 @@ const Products = ({ products, APISetter, loading }) => {
               <Loader />
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-12">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white rounded-lg shadow-md p-4"
+                  className="p-4 bg-white rounded-lg shadow-md flex flex-col justify-between items-center"
                 >
-                  <div className="font-bold">{product.title}</div>
-                  <img
-                    className="w-full mt-2"
-                    src={product.image}
-                    alt={product.title}
-                  />
-                  <div className="mt-2">{product.description}</div>
-                  <div className="font-bold mt-2">${product.price}</div>
+                  <div>
+                    <div className="mb-4 font-bold">
+                      {truncateWords(product.title, 3)}
+                    </div>
+                    <div className="mb-4 h-60 w-full flex justify-center items-center">
+                      <img
+                        className="h-full cursor-pointer"
+                        src={product.image}
+                        alt={product.title}
+                      />
+                    </div>
+                    <div className="mt-4">
+                      {truncateWords(product.description, 20)}{" "}
+                      <span className="text-blue-600 text-nowrap cursor-pointer">
+                        More details
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex justify-between items-center w-full">
+                    <div className="font-bold text-blue-600">
+                      Ksh {product.price}
+                    </div>
+                    <div className="inline-flex rounded-md shadow-sm">
+                      <button
+                        type="button"
+                        className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-l-md"
+                      >
+                        +
+                      </button>
+                      <button
+                        disabled
+                        type="button"
+                        className="px-4 py-2 text-lg font-bold bg-gray-300"
+                      >
+                        <PiShoppingCartSimpleBold />
+                      </button>
+                      <button
+                        type="button"
+                        className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-r-md"
+                      >
+                        -
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
