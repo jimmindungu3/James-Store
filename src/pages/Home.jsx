@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [API_URL, setAPI_URL] = useState("https://fakestoreapi.com/products");
 
   const APISetter = (endpoint) => {
@@ -14,10 +15,12 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get(API_URL)
       .then((response) => {
         setProducts(response.data);
+        setLoading(false)
       })
       .catch((error) => console.error(error));
   }, [API_URL]);
@@ -25,7 +28,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Products products={products} APISetter={APISetter} />
+      <Products products={products} APISetter={APISetter} loading={loading}/>
       <Footer />
     </>
   );
