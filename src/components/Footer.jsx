@@ -10,30 +10,30 @@ import {
 const Footer = () => {
   return (
     <>
-      <footer className="bg-blue-950 py-8">
+      <footer className="bg-gray-100 py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex justify-end ">
-            <a href="#" className="text-white px-4 py-2 hover:text-gray-400">
+            <a href="#" className="text-gray-700 px-4 py-2 hover:text-gray-400">
               Clothes
             </a>
-            <a href="#" className="text-white px-4 py-2 hover:text-gray-400">
+            <a href="#" className="text-gray-700 px-4 py-2 hover:text-gray-400">
               Jewelry
             </a>
-            <a href="#" className="text-white pl-4 py-2 hover:text-gray-400">
+            <a href="#" className="text-gray-700 pl-4 py-2 hover:text-gray-400">
               Electronics
             </a>
           </nav>
 
           <hr className="border-gray-600 my-4" />
 
-          <div className="text-white flex justify-between">
+          <div className="text-gray-700 flex justify-between">
             <a href="#" className="mr-4 hover:text-gray-400">
               Terms and Conditions
             </a>
-            <div className="text-white">
+            <div className="text-gray-700">
               &copy; {new Date().getFullYear()} KenBuy254. All Rights Reserved.
             </div>
-            <div className="text-white flex items-center">
+            <div className="text-gray-700 flex items-center">
               <a href="#" className="mr-4 hover:text-gray-400">
                 <FaFacebook />
               </a>

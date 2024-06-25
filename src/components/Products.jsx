@@ -1,9 +1,8 @@
-import { PiShoppingCartSimpleBold } from "react-icons/pi";
-
-import Modal from "./Modal";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
+import Modal from "./Modal";
+import axios from "axios";
+import { PiShoppingCartSimpleBold } from "react-icons/pi";
 
 const truncateWords = (str, numWords) => {
   const words = str.split(" ");
@@ -14,8 +13,26 @@ const truncateWords = (str, numWords) => {
   }
 };
 
-const Products = ({ products, APISetter, loading }) => {
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [API_URL, setAPI_URL] = useState("https://fakestoreapi.com/products");
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const APISetter = (endpoint) => {
+    setAPI_URL(`https://fakestoreapi.com/products${endpoint}`);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(API_URL)
+      .then((response) => {
+        setProducts(response.data);
+        setLoading(false);
+      })
+      .catch((error) => console.error(error));
+  }, [API_URL]);
 
   const openModal = (product) => {
     setSelectedProduct(product);

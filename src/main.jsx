@@ -1,17 +1,15 @@
-// import App from "./App.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Home from "./pages/Home.jsx";
-import Cart from "./components/Cart.jsx";
+import CartPage from "./pages/Cart.jsx";
 import NotFound from "./pages/NotFound.jsx";
-
+import Home from "./pages/Home.jsx";
 import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
-  { path: "/shop", element: <Home /> },
-  { path: "/cart", element: <Cart /> },
+  { path: "/", element: <Home /> },
+  { path: "/cart", element: <CartPage /> },
   { errorElement: <NotFound /> },
 ]);
 

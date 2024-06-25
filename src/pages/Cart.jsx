@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Cart from '../components/Cart'
 import Footer from '../components/Footer'
 
-const Cart = () => {
+const CartPage = () => {
   return (
     <div>
       <Navbar />
@@ -13,4 +13,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;
