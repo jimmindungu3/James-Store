@@ -14,14 +14,18 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex justify-end ">
             <a href="#" className="text-gray-700 px-4 py-2 hover:text-gray-400">
-              Clothes
+              Men's Clothes
+            </a>
+            <a href="#" className="text-gray-700 pl-4 py-2 hover:text-gray-400">
+              women's Clothes
             </a>
             <a href="#" className="text-gray-700 px-4 py-2 hover:text-gray-400">
-              Jewelry
+              Jewellery
             </a>
             <a href="#" className="text-gray-700 pl-4 py-2 hover:text-gray-400">
               Electronics
             </a>
+           
           </nav>
 
           <hr className="border-gray-600 my-4" />

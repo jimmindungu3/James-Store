@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { BsCart2 } from "react-icons/bs";
+import { FiMenu, FiX } from "react-icons/fi";
+import CartContext from "../context/cartContext";
 
 const Navbar = () => {
+  const { cart } = useContext(CartContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Calculate the total quantity of items in the cart
+  const totalQuantity = cart.reduce((total, product) => total + (product.num || 1), 0);
+
   return (
-    <nav className="bg-gray-100 py-3 sticky top-0 shadow-lg">
-      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 items-center">
-        <div className="flex justify-start lg:justify-start">
-          <NavLink to="/" className="font-bold text-2xl px-2">
-            James Store
-          </NavLink>
-        </div>
-        <div className="flex justify-center">
-          <ul className="navbar-nav flex flex-col lg:flex-row lg:space-x-4 text-center">
+    <nav className="bg-gray-100 py-3 sticky top-0 shadow-lg z-10">
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <NavLink to="/" className="font-bold text-2xl">
+          James Store
+        </NavLink>
+
+        <div className="hidden lg:flex flex-grow justify-center">
+          <ul className="flex space-x-6">
             <li className="nav-item">
               <NavLink
                 to="/"
-                className="nav-link block lg:inline-block px-2 py-1"
+                className="nav-link px-2 py-1"
+                onClick={toggleMenu}
               >
                 Shop
               </NavLink>
@@ -23,7 +36,8 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink
                 to="/"
-                className="nav-link block lg:inline-block px-2 py-1"
+                className="nav-link px-2 py-1"
+                onClick={toggleMenu}
               >
                 About
               </NavLink>
@@ -31,35 +45,98 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink
                 to="/"
-                className="nav-link block lg:inline-block px-2 py-1"
+                className="nav-link px-2 py-1"
+                onClick={toggleMenu}
               >
                 Contact
               </NavLink>
             </li>
           </ul>
         </div>
-        <div className="flex justify-end">
-          <div className="buttons flex flex-col lg:flex-row lg:items-center lg:space-x-2">
+
+        {/* Hamburger Menu and Auth/Cart Buttons */}
+        <div className="flex items-center space-x-4">
+          {/* Hamburger Menu */}
+          <div className="lg:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-2xl text-gray-700 focus:outline-none"
+            >
+              {isOpen ? <FiX /> : <FiMenu />}
+            </button>
+          </div>
+
+          <div className="hidden lg:flex items-center space-x-4">
             <NavLink
               to="/"
-              className="btn m-2 border border-gray-700 rounded-md px-4 py-2 text-gray-700 hover:bg-gray-700 hover:text-white transition duration-300"
+              className="btn border border-gray-700 rounded-md px-4 py-2 text-gray-700 hover:bg-gray-700 hover:text-white transition duration-300"
+              onClick={toggleMenu}
             >
-              <i className="fa fa-sign-in-alt mr-1"></i> Login
+              Login
             </NavLink>
             <NavLink
               to="/"
-              className="btn m-2 border border-gray-700 rounded-md px-4 py-2 text-gray-700 hover:bg-gray-700 hover:text-white transition duration-300"
+              className="btn border border-gray-700 rounded-md px-4 py-2 text-gray-700 hover:bg-gray-700 hover:text-white transition duration-300"
+              onClick={toggleMenu}
             >
-              <i className="fa fa-user-plus mr-1"></i> Register
+              Register
             </NavLink>
             <NavLink
               to="/cart"
-              className="btn m-2 border border-gray-700 rounded-md px-4 py-2 text-gray-700 hover:bg-gray-700 hover:text-white transition duration-300"
+              className="btn relative text-2xl border border-gray-700 rounded-md px-4 py-2 text-gray-700 hover:bg-gray-700 hover:text-white transition duration-300"
+              onClick={toggleMenu}
             >
-              <i className="fa fa-cart-shopping mr-1"></i> Cart
+              <BsCart2 />
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                {totalQuantity}
+              </span>
             </NavLink>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`${isOpen ? "block" : "hidden"} lg:hidden`}>
+        <ul className="flex flex-col items-center bg-gray-100 space-y-2 py-2">
+          <li>
+            <NavLink to="/" className="block px-4 py-2" onClick={toggleMenu}>
+              Shop
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/"
+              className="block px-4 py-2"
+              onClick={toggleMenu}
+            >
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/" className="block px-4 py-2" onClick={toggleMenu}>
+              Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/" className="block px-4 py-2" onClick={toggleMenu}>
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/" className="block px-4 py-2" onClick={toggleMenu}>
+              Register
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/cart"
+              className="block px-4 py-2"
+              onClick={toggleMenu}
+            >
+              Cart
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );

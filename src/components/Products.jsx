@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+// Products.jsx
+
+import React, { useState, useEffect, useContext } from "react";
 import Loader from "./Loader";
 import Modal from "./Modal";
 import axios from "axios";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
+import CartContext from "../context/cartContext";
 
 const truncateWords = (str, numWords) => {
   const words = str.split(" ");
@@ -18,6 +21,8 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
   const [API_URL, setAPI_URL] = useState("https://fakestoreapi.com/products");
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const { addToCart } = useContext(CartContext);
 
   const APISetter = (endpoint) => {
     setAPI_URL(`https://fakestoreapi.com/products${endpoint}`);
@@ -45,9 +50,9 @@ const Products = () => {
   return (
     <div className="bg-gray-200">
       <div className="container mx-auto flex pb-8 pt-6">
-        <div className="w-1/6 p-4">
+        <div className="hidden lg:block lg:w-1/6 p-4">
           <div className="mb-4 text-2xl font-bold">Categories</div>
-          <ul className="">
+          <ul>
             <li
               onClick={() => APISetter("/category/men's clothing")}
               className="py-1 px-2 cursor-pointer font-bold text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
@@ -81,13 +86,13 @@ const Products = () => {
           </ul>
         </div>
 
-        <div className="w-5/6 p-4">
+        <div className="w-full lg:w-5/6 p-4">
           {loading ? (
             <div className="flex justify-center items-center h-full">
               <Loader />
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
               {products.map((product) => (
                 <div
                   key={product.id}
@@ -108,7 +113,7 @@ const Products = () => {
                     <div className="mt-4">
                       {truncateWords(product.description, 20)}{" "}
                       <span
-                        className="text-blue-600 text-nowrap hover:cursor-pointer"
+                        className="text-blue-600 text-nowrap font-semibold hover:cursor-pointer hover:text-blue-500 "
                         onClick={() => openModal(product)}
                       >
                         More details
@@ -117,10 +122,14 @@ const Products = () => {
                   </div>
                   <div className="mt-4 flex justify-between items-center w-full">
                     <div className="font-bold text-blue-600">
-                      Ksh {product.price}
+                      $ {product.price}
                     </div>
                     <div className="inline-flex rounded-md shadow-sm">
                       <button
+                        onClick={() => {
+                          addToCart(product);
+                          // console.log(product);
+                        }}
                         type="button"
                         className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-l-md"
                       >
