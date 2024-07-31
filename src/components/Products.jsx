@@ -22,7 +22,7 @@ const Products = () => {
   const [API_URL, setAPI_URL] = useState("https://fakestoreapi.com/products");
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, decrementProduct } = useContext(CartContext);
 
   const APISetter = (endpoint) => {
     setAPI_URL(`https://fakestoreapi.com/products${endpoint}`);
@@ -55,31 +55,31 @@ const Products = () => {
           <ul>
             <li
               onClick={() => APISetter("/category/men's clothing")}
-              className="py-1 px-2 cursor-pointer font-bold text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
+              className="py-1 px-2 cursor-pointer font-bold text-nowrap hover:bg-teal-600 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Men's Clothes
             </li>
             <li
               onClick={() => APISetter("/category/women's clothing")}
-              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-teal-600 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Women's Clothes
             </li>
             <li
               onClick={() => APISetter("/category/jewelery")}
-              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-teal-600 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Jewellery
             </li>
             <li
               onClick={() => APISetter("/category/electronics")}
-              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-teal-600 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               Electronics
             </li>
             <li
               onClick={() => APISetter("")}
-              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-blue-950 hover:text-white active:bg-blue-900 active:text-white rounded-md"
+              className="py-1 px-2 cursor-pointer font-bold text-md text-nowrap hover:bg-teal-600 hover:text-white active:bg-blue-900 active:text-white rounded-md"
             >
               All Products
             </li>
@@ -126,10 +126,7 @@ const Products = () => {
                     </div>
                     <div className="inline-flex rounded-md shadow-sm">
                       <button
-                        onClick={() => {
-                          addToCart(product);
-                          // console.log(product);
-                        }}
+                        onClick={() => addToCart(product)}
                         type="button"
                         className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-l-md"
                       >
@@ -143,6 +140,7 @@ const Products = () => {
                         <PiShoppingCartSimpleBold />
                       </button>
                       <button
+                        onClick={() => decrementProduct(product.id)}
                         type="button"
                         className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-r-md"
                       >

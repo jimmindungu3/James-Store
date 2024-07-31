@@ -3,9 +3,9 @@ import Navbar from "../components/Navbar";
 import Cart from '../components/Cart'
 import Footer from '../components/Footer'
 
-const CartPage = () => {
+const Page = () => {
   return (
-    <div>
+    <div className="bg-gray-200">
       <Navbar />
       <Cart />
       <Footer />
@@ -13,4 +13,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default Page;
