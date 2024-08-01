@@ -46,7 +46,6 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
    ```bash
    npm run dev
    ```
-## Usage
 
 ## Usage
 
