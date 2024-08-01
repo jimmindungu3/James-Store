@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
+import CartContext from "../context/cartContext";
 
 const Modal = ({ selectedProduct, closeModal }) => {
+  const { addToCart, decrementProduct } = useContext(CartContext);
   return (
     <div>
       <div className="fixed inset-0 z-2 flex justify-center items-center bg-gray-800 bg-opacity-50">
@@ -29,6 +31,7 @@ const Modal = ({ selectedProduct, closeModal }) => {
             </div>
             <div className="inline-flex rounded-md shadow-sm">
               <button
+                onClick={() => addToCart(selectedProduct)}
                 type="button"
                 className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-l-md"
               >
@@ -42,6 +45,7 @@ const Modal = ({ selectedProduct, closeModal }) => {
                 <PiShoppingCartSimpleBold />
               </button>
               <button
+                onClick={() => decrementProduct(selectedProduct.id)}
                 type="button"
                 className="px-4 py-2 text-lg font-bold bg-gray-300 hover:bg-gray-400 active:bg-gray-300 rounded-r-md"
               >
