@@ -37,15 +37,18 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
 
 2. cd to the repository and install the dependencies
 
-    ```bash
-    cd James-Store
-    npm install
-    ```
+   ```bash
+   cd James-Store
+   npm install
+   ```
+
 3. Start the development server
-    ```bash 
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
+
 ## Features
+
 - Product listing and categorization
 - Shopping cart functionality
 - Order summary and checkout
@@ -53,6 +56,9 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
 
 ## Screenshots
 
+<img src="./public/product-listing.png" alt="Product listing page" width="600">;
+<img src="./public/cart.png" alt="Cart page" width="600">;
+<img src="./public/checkout.png" alt="Checkout page" width="600">;
 
 ## Technologies
 
@@ -64,6 +70,7 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
 - UseContext
 
 ## Contributibuting
+
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
@@ -74,13 +81,14 @@ Contributions are welcome! Please follow these steps:
 6. Open a pull request
 
 ## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
+
 - Check out my [portfolio](https://jimmindungu3.github.io/portfolio/).
 - Connect with me on [LinkedIn](https://www.linkedin.com/in/jamesndunguthedev/).
 - Check out my [YouTube Channel](https://youtube.com/@DevsToday) for tech content.
 - Follow me on X [@jimmindungu3](https://twitter.com/jimmindungu3).
 - Email me at jamesthesuperdev@gmail.com for any inquiries or collaboration opportunities.
 - WhatsApp or Call: +254 717 055 495
-
