@@ -46,6 +46,12 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
    ```bash
    npm run dev
    ```
+## Usage
+
+## Usage
+
+After starting the development server, you can access the app at `http://localhost:5157`. Browse products, add them to your cart, and proceed to checkout. The app provides a smooth user experience with intuitive navigation and responsive design.
+
 
 ## Features
 
@@ -71,7 +77,7 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
 - React Router
 - UseContext
 
-## Contributibuting
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
