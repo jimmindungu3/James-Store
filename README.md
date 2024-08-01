@@ -57,7 +57,9 @@ This app consumes the fakestore API. Here is its [documentation](https://fakesto
 ## Screenshots
 
 <img src="./public/product-listing.png" alt="Product listing page" width="600">;
+
 <img src="./public/cart.png" alt="Cart page" width="600">;
+
 <img src="./public/checkout.png" alt="Checkout page" width="600">;
 
 ## Technologies
