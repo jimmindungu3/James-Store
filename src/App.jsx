@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CartContext from "./context/cartContext.js";
 import Home from "./pages/Home.jsx";
@@ -10,7 +10,16 @@ import ContactPage from "./pages/Contact.jsx";
 import "./index.css";
 
 const App = () => {
-  const [cart, setCart] = useState([]);
+  // get cart from localstorage and initialize state to its content
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("myCart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  // update localstorage when state changes
+  useEffect(() => {
+    window.localStorage.setItem("myCart", JSON.stringify(cart));
+  }, [cart]);
 
   // Function to add a product to the cart
   const addToCart = (product) => {
@@ -24,6 +33,7 @@ const App = () => {
           ...updatedCart[existingProductIndex],
           num: updatedCart[existingProductIndex].num + 1,
         };
+
         return updatedCart;
       } else {
         return [...prevCart, { ...product, num: 1 }];
