@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CartContext from "./src/context/cartContext.js";
-import Home from "./src/pages/Home.jsx";
-import CartPage from "./src/pages/Cart.jsx";
-import CheckoutPage from "./src/pages/Checkout.jsx";
-import NotFound from "./src/pages/NotFound.jsx";
-import AboutPage from "./src/pages/About.jsx";
-import ContactPage from "./src/pages/Contact.jsx";
-import "./src/index.css";
+import CartContext from "./context/cartContext.js";
+import Home from "./pages/Home.jsx";
+import CartPage from "./pages/Cart.jsx";
+import CheckoutPage from "./pages/Checkout.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import AboutPage from "./pages/About.jsx";
+import ContactPage from "./pages/Contact.jsx";
+import "./index.css";
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
   { path: "/cart", element: <CartPage /> },
   { path: "/checkout", element: <CheckoutPage /> },
   { path: "/about", element: <AboutPage /> },
-  { path: '/contact', element: <ContactPage />},
+  { path: "/contact", element: <ContactPage /> },
   { path: "*", element: <NotFound /> },
 ]);
 
